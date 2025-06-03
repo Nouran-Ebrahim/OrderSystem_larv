@@ -57,7 +57,10 @@
 
                                 </div>
                                 <div class="mb-3">
-                                    <label for="exampleInputName" class="form-label">Items</label>
+                                    <label class="form-label fw-semibold">
+                                        <i class="bi bi-box-seam-fill  me-1"></i> items
+                                        <span class="text-danger">*</span>
+                                    </label>
                                     <div id="items-container">
                                         <div class="row g-3 align-items-end item-row">
                                             <div class="col-md-4">
@@ -118,7 +121,7 @@
             let newRow = `
             <div class="row g-3 align-items-end item-row mt-2">
                 <div class="col-md-4">
-                    <input type="text" name="items[${itemIndex}][name]" class="form-control" placeholder="Item Name" required>
+                    <input type="text"  name="items[${itemIndex}][name]" class="form-control" placeholder="Item Name" required>
                 </div>
                 <div class="col-md-2">
                     <input type="number" min="1" step="1" name="items[${itemIndex}][quantity]" class="form-control" placeholder="Qty" required>
