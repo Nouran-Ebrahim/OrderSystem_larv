@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title', 'Orders')
+@section('title', 'ordersReport')
 @section('content')
     <!--begin::App Content Header-->
     <div class="app-content-header">
@@ -15,18 +15,16 @@
                 <div class="col-md-12">
                     <div class="card mb-4">
                         <div class="card-header">
-                            <h3 class="card-title">Orders</h3>
+                            <h3 class="card-title">Orders Report</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="ordersTable" class="table table-bordered">
+                            <table id="ordersReportTable" class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Order Number</th>
-                                        <th>Client Name</th>
-                                        <th>Client Email</th>
-                                        <th>Created at</th>
-                                        <th>actions</th>
+                                        <th>Order ID</th>
+                                        <th>Order Date</th>
+                                        <th>Total Items Count</th>
                                     </tr>
                                 </thead>
 
@@ -47,32 +45,19 @@
 @endsection
 @push('script')
     <script>
-        $('#ordersTable').DataTable({
+        $('#ordersReportTable').DataTable({
             //  Blfrtip - lfrtip -tiplr
             dom: "lfrtip",
             serverSide: true,
             processing: true,
             ajax: {
-                url: '{{ route('dashboard.orders.data') }}'
+                url: '{{ route('dashboard.reports.ordersReportData') }}'
             },
             columns: [{
                     name: 'id',
                     data: 'id',
                     searchable: true,
                     orderable: false,
-                },
-                {
-                    data: 'client.name',
-                    name: 'client.name',
-                    searchable: true,
-                    sortable: false
-                },
-
-                {
-                    data: 'client.email',
-                    name: 'client.email',
-                    searchable: true,
-                    sortable: false
                 },
 
                 {
@@ -82,8 +67,8 @@
                     sortable: false
                 },
                 {
-                    data: 'actions',
-                    name: 'actions',
+                    data: 'items_count',
+                    name: 'items_count',
                     searchable: false,
                     sortable: false
                 },

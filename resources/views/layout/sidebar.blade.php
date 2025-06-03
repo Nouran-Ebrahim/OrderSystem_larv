@@ -79,8 +79,8 @@
 
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+                <li class="nav-item {{ Request::is('*reports*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ Request::is('*reports*') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-clipboard2-data-fill"></i>
                         <p>
                             Reports
@@ -89,13 +89,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="./widgets/small-box.html" class="nav-link">
+                            <a href="{{ route('dashboard.reports.ordersReport') }}" class="nav-link {{ Route::currentRouteName() == 'dashboard.reports.ordersReport' ? 'active' : '' }}">
                                 <i class="nav-icon bi bi-cart-check-fill"></i>
                                 <p>Orders</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="./widgets/info-box.html" class="nav-link">
+                            <a href="{{ route('dashboard.reports.clientsReport') }}" class="nav-link {{ Route::currentRouteName() == 'dashboard.reports.clientsReport' ? 'active' : '' }}">
                                 <i class="nav-icon bi bi-people-fill"></i>
                                 <p>Clients</p>
                             </a>

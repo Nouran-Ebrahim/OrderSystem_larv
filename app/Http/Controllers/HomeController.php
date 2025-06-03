@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,6 +13,8 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('home');
+        $ordersCount=Order::count();
+        $clientsCount=Client::count();
+        return view('home',compact('ordersCount','clientsCount'));
     }
 }

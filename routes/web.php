@@ -3,6 +3,7 @@
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ReportsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,7 +38,7 @@ Route::group(
             Route::get('/data', 'data')->name('data');
         });
 
-         ////orders///
+        ////orders///
         Route::group([
             'prefix' => 'orders',
             'as' => 'orders.',
@@ -48,6 +49,18 @@ Route::group(
             Route::get('/show/{order}', 'show')->name('show');
             Route::post('/store', 'store')->name('store');
             Route::get('/data', 'data')->name('data');
+        });
+
+        ////reports///
+        Route::group([
+            'prefix' => 'reports',
+            'as' => 'reports.',
+            'controller' => ReportsController::class
+        ], function () {
+            Route::get('/orderReport', 'ordersReport')->name('ordersReport');
+            Route::get('/ordersReportData', 'ordersReportData')->name('ordersReportData');
+            Route::get('/clientReport', 'clientsReport')->name('clientsReport');
+            Route::get('/clientsReportData', 'clientsReportData')->name('clientsReportData');
         });
     }
 );
