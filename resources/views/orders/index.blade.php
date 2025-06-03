@@ -22,10 +22,11 @@
                             <table id="ordersTable" class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th style="width: 10px">#</th>
-                                        <th>name</th>
-                                        <th>email</th>
-                                        <th>created at</th>
+                                        <th>Order Number</th>
+                                        <th>Client Name</th>
+                                        <th>Client Email</th>
+                                        <th>Created at</th>
+                                        <th>actions</th>
                                     </tr>
                                 </thead>
 
@@ -55,20 +56,20 @@
                 url: '{{ route('dashboard.orders.data') }}'
             },
             columns: [{
-                    data: 'DT_RowIndex',
-                    searchable: false,
+                    data: 'id',
+                    searchable: true,
                     orderable: false,
                 },
                 {
-                    data: 'name',
-                    name: 'name',
+                    data: 'client.name',
+                    name: 'client.name',
                     searchable: true,
                     sortable: false
                 },
 
                 {
-                    data: 'email',
-                    name: 'email',
+                    data: 'client.email',
+                    name: 'client.email',
                     searchable: true,
                     sortable: false
                 },
@@ -76,6 +77,12 @@
                 {
                     data: 'created_at',
                     name: 'created_at',
+                    searchable: false,
+                    sortable: false
+                },
+                {
+                    data: 'actions',
+                    name: 'actions',
                     searchable: false,
                     sortable: false
                 },

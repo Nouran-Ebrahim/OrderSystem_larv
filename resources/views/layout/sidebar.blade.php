@@ -55,8 +55,8 @@
                     </ul>
                 </li>
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+                <li class="nav-item {{ Request::is('*orders*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ Request::is('*orders*') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-cart-check-fill"></i>
                         <p>
                             Orders
@@ -65,13 +65,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="./widgets/small-box.html" class="nav-link">
+                            <a href="{{ route('dashboard.orders.create') }}" class="nav-link {{ Route::currentRouteName() == 'dashboard.orders.create' ? 'active' : '' }}">
                                 <i class="nav-icon bi bi-plus-circle-fill"></i>
                                 <p>Add</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="./widgets/info-box.html" class="nav-link">
+                            <a href="{{ route('dashboard.orders.index') }}" class="nav-link {{ Route::currentRouteName() == 'dashboard.orders.index' ? 'active' : '' }}">
                                 <i class="nav-icon bi bi-list"></i>
                                 <p>index</p>
                             </a>

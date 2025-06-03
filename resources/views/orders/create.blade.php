@@ -46,19 +46,45 @@
                             <div class="card-body">
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">
-                                        <i class="bi bi-envelope-fill  me-1"></i> email
+                                        <i class="bi bi-person-fill  me-1"></i> client
                                         <span class="text-danger">*</span>
                                     </label>
-                                    <input type="email" value="{{ old('email') }}" name="email" class="form-control" placeholder="email"
-                                         />
+                                    <select name="client_id" class="form-select">
+                                        @foreach ($clients as $client)
+                                            <option value="{{ $client->id }}">{{ $client->name }}</option>
+                                        @endforeach
+                                    </select>
 
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label fw-semibold">
-                                        <i class="bi bi-person-fill  me-1"></i> name
-                                        <span class="text-danger">*</span>
-                                    </label>
-                                    <input type="text" value="{{ old('name') }}" name="name" class="form-control" placeholder="name"  />
+                                    <label for="exampleInputName" class="form-label">Items</label>
+                                    <div id="items-container">
+                                        <div class="row g-3 align-items-end item-row">
+                                            <div class="col-md-4">
+                                                <label class="form-label">Item Name</label>
+                                                <input type="text" name="items[0][name]" class="form-control" >
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label class="form-label">Quantity</label>
+                                                <input  type="number" min="1" step="1"
+                                                    name="items[0][quantity]" class="form-control">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label class="form-label">Price</label>
+                                                <input  type="number" min="0.5" step="0.01"
+                                                    name="items[0][price]" class="form-control">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button type="button"
+                                                    class="btn btn-danger remove-item d-none">Remove</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="my-3">
+                                        <button type="button" id="add-item" class="btn btn-secondary">Add Another
+                                            Item</button>
+                                    </div>
                                 </div>
 
                             </div>
@@ -84,4 +110,32 @@
     <!--end::App Content-->
 @endsection
 @push('script')
+    <script>
+        // add new item in repeater
+        let itemIndex = 1;
+
+        $('#add-item').on('click', function() {
+            let newRow = `
+            <div class="row g-3 align-items-end item-row mt-2">
+                <div class="col-md-4">
+                    <input type="text" name="items[${itemIndex}][name]" class="form-control" placeholder="Item Name" required>
+                </div>
+                <div class="col-md-2">
+                    <input type="number" min="1" step="1" name="items[${itemIndex}][quantity]" class="form-control" placeholder="Qty" required>
+                </div>
+                <div class="col-md-2">
+                    <input type="number" min="0.5" step="0.01" name="items[${itemIndex}][price]" class="form-control"  placeholder="Price" required>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-danger remove-item">Remove</button>
+                </div>
+            </div>`;
+            $('#items-container').append(newRow); // append the new row at the end of the items-container
+            itemIndex++; // increament the itemIndex by 1
+        });
+        // remove the closes row to clicked button
+        $(document).on('click', '.remove-item', function() {
+            $(this).closest('.item-row').remove();
+        });
+    </script>
 @endpush

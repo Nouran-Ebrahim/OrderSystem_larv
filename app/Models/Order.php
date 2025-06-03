@@ -17,4 +17,9 @@ class Order extends Model
     {
         return $this->hasMany(Item::class);
     }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return date('Y-m-d H:i:s', strtotime($value));
+    }
 }
